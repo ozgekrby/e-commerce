@@ -8,14 +8,14 @@ import HomePage from "./pages/HomePage";
 function App() {
   return (
     <>
-      <div >
+      <div>
         <Header />
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-        </Switch>
-        <Footer />
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+          <Footer />
       </div>
     </>
   );
