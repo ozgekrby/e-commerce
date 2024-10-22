@@ -1,4 +1,4 @@
-import PageContent from '@/layout/PageContent'
+import PageContent from '@/layout/PageContentHome'
 import React from 'react'
 
 export default function HomePage() {

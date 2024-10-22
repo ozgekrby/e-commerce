@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import {
   HeartIcon,
   InstagramIcon,
+  Link,
   MailIcon,
   PhoneIcon,
   SearchIcon,
@@ -62,7 +63,7 @@ export default function Header() {
               <NavigationMenu>
                 <NavigationMenuList className="flex flex-col justify-center lg:flex-row"> 
                   <NavigationMenuItem>
-                    <a href="/docs" legacyBehavior passHref>
+                    <a href="/home" legacyBehavior passHref>
                       <NavigationMenuLink
                         className={navigationMenuTriggerStyle()}
                       >
@@ -71,7 +72,16 @@ export default function Header() {
                     </a>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>
+                    <a href="/shop" legacyBehavior passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        Shop
+                      </NavigationMenuLink>
+                    </a>
+                    
+                      </NavigationMenuTrigger>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
                     <a href="/docs" legacyBehavior passHref>
@@ -144,7 +154,6 @@ export default function Header() {
               </div>
             </div>
           </div>
-
       </div>
     </div>
   );
