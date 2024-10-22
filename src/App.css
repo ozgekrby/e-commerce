@@ -1,46 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@layer base {
+  :root {
+    --radius: 0.5rem;
   }
-  to {
-    transform: rotate(360deg);
+
+    h1 {
+      @apply font-inter text-4xl font-bold leading-[4.938rem] tracking-[0.0125rem];
+    }
+    h2 {
+      @apply font-inter text-3xl font-bold leading-[3.625rem] tracking-[0.0125rem];
+    }
+    h3 {
+      @apply font-inter text-base font-normal leading-[1.875rem] tracking-[0.00625rem];
+    }
+    h4 {
+      @apply font-inter text-base font-bold leading-[1.875rem] tracking-[0.0125rem];
+    }
+    h5 {
+      @apply font-inter text-base font-bold leading-[1.625rem] tracking-[0.00625rem];
+    }
+    h6 {
+      @apply font-inter text-sm font-semibold leading-[1.25rem] tracking-[0.0125rem];
+    }
+    p {
+      @apply font-inter text-base font-normal leading-[1.375rem] tracking-[0.0125rem];
+    }
+    li {
+      @apply font-inter text-base font-normal leading-[1.875rem] tracking-[0.0125rem];
+    }
+    .btn-text {
+     @apply font-inter text-base font-semibold leading-[1.375rem] tracking-[0.0125rem];
+    }
+    .mobile-menu {
+     @apply font-inter text-2xl font-medium leading-[2.8125rem] tracking-[0.0125rem];
+    }
+    a {
+      @apply font-inter text-base font-medium leading-[1.375rem] tracking-[0.0125rem];
+    }
   }
+*{
+  border:1px solid purple;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+  
