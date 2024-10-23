@@ -5,6 +5,7 @@ import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 function App() {
   return (
@@ -12,14 +13,17 @@ function App() {
       <div>
         <Header />
           <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
             <Route exact path="/home">
               <HomePage />
             </Route>
             <Route path="/shop">
             <ShopPage/>
+            </Route>
+            <Route path="/products">
+            <ProductDetailPage />
+           </Route>
+            <Route path="/">
+              <HomePage />
             </Route>
           </Switch>
           <Footer />
