@@ -32,7 +32,7 @@ export default function PageContentShop() {
     <div>
       <div className="bg-slate-100">
         <div className="flex items-center justify-center">
-          <div className="flex items-center flex-col md:flex-row md:w-3/4 md:justify-between">
+          <div className="flex items-center flex-col lg:flex-row lg:w-3/4 lg:justify-between">
             <h2>Shop</h2>
             <div>
               <NavigationMenu>
@@ -53,17 +53,17 @@ export default function PageContentShop() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row w-3/4 mx-auto md:justify-between md:h-72 gap-4 md:gap-0">
+        <div className="flex flex-col lg:flex-row w-3/4 mx-auto lg:justify-between lg:h-72 gap-4 lg:gap-0">
           {Array.from({ length: itemCount }).map((_, index) => (
-            <div className=" w-full mx-auto md:m-0 md:w-1/6 h-72">
+            <div className=" w-full mx-auto lg:m-0 lg:w-1/6 h-72">
               <ShopCategory />
             </div>
           ))}
         </div>
       </div>
       <div className="flex items-center justify-center ">
-        <div className="flex items-center w-3/4 justify-between flex-col gap-4 md:flex-row md:gap-0">
-          <p className="text-gray-400">Showing all 12 results </p>
+        <div className="flex items-center w-3/4 justify-between flex-col gap-4 lg:flex-row lg:gap-0">
+          <a href="/products"  className="text-gray-400">Showing all 12 results </a>
           <div className="flex gap-2">
             <p className="text-gray-400">Views:</p>
             <LayoutGridIcon />
@@ -85,7 +85,7 @@ export default function PageContentShop() {
       </div>
       <div className="flex flex-wrap w-3/4 mx-auto ">
         {Array.from({ length: productCount }).map((_, index) => (
-          <div className="w-full md:w-1/4 p-2">
+          <div className="w-full lg:w-1/4 p-2">
             <ProductCard />
           </div>
         ))}
@@ -117,9 +117,9 @@ export default function PageContentShop() {
         </Pagination>
       </div>
       <div>
-        <div className="w-3/4 flex flex-col md:flex-row mx-auto justify-between gap-4 md:gap-0">
+        <div className="w-3/4 flex flex-col lg:flex-row mx-auto justify-between gap-4 lg:gap-0">
           {Array.from({ length: brandCount }).map((_, index) => (
-            <div className="mx-auto md:m-0 ">
+            <div className="mx-auto lg:m-0 ">
               <img src={`assets/brandlogos/${index + 1}.png`} />
             </div>
           ))}
