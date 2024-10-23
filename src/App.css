@@ -40,6 +40,3 @@
       @apply font-inter text-base font-medium leading-[1.375rem] tracking-[0.0125rem];
     }
   }
-  *{
-    border:1px solid purple;
-  }
