@@ -49,10 +49,10 @@ export default function PageContentContact() {
             <FaLinkedinIn className="text-gray-600 hover:text-blue-700 cursor-pointer text-xl" />
           </div>
         </div>
-        <div className="lg:w-1/2">
+        <div className="lg:w-1/2 flex lg:justify-center">
           <img
             src="assets/contactImg/contactImg.png"
-            className="object-cover"
+            className="object-cover lg:w-3/4"
           />
         </div>
       </div>
