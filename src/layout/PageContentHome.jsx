@@ -7,87 +7,197 @@ import React from "react";
 
 const PageContent = () => {
   const itemCount = 8;
+  const products = [
+    {
+      id: 1,
+      title: "Graphic Design",
+      department: "English Department",
+      oldPrice: 20.0,
+      newPrice: 16.0,
+      imageUrl: "https://picsum.photos/800/1000?random=1",
+      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
+    },
+    {
+      id: 2,
+      title: "Graphic Design",
+      department: "English Department",
+      oldPrice: 20.0,
+      newPrice: 16.0,
+      imageUrl: "https://picsum.photos/800/1000?random=2",
+      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
+    },
+    {
+      id: 3,
+      title: "Graphic Design",
+      department: "English Department",
+      oldPrice: 20.0,
+      newPrice: 16.0,
+      imageUrl: "https://picsum.photos/800/1000?random=2",
+      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
+    },
+    {
+      id: 4,
+      title: "Graphic Design",
+      department: "English Department",
+      oldPrice: 20.0,
+      newPrice: 16.0,
+      imageUrl: "https://picsum.photos/800/1000?random=2",
+      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
+    },
+    {
+      id: 5,
+      title: "Graphic Design",
+      department: "English Department",
+      oldPrice: 20.0,
+      newPrice: 16.0,
+      imageUrl: "https://picsum.photos/800/1000?random=2",
+      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
+    },
+    {
+      id: 6,
+      title: "Graphic Design",
+      department: "English Department",
+      oldPrice: 20.0,
+      newPrice: 16.0,
+      imageUrl: "https://picsum.photos/800/1000?random=2",
+      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
+    },
+    {
+      id: 7,
+      title: "Graphic Design",
+      department: "English Department",
+      oldPrice: 20.0,
+      newPrice: 16.0,
+      imageUrl: "https://picsum.photos/800/1000?random=2",
+      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
+    },
+    {
+      id: 8,
+      title: "Graphic Design",
+      department: "English Department",
+      oldPrice: 20.0,
+      newPrice: 16.0,
+      imageUrl: "https://picsum.photos/800/1000?random=2",
+      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
+    },
+  ];
   return (
-    <>
-      <div>
-        <CarouselHome />
-        <div className="flex flex-col items-center text-center h-2/3">
-          <h2>EDITOR’S PICK </h2>
-          <p>Problems trying to resolve the conflict between </p>
-          <div className="grid grid-cols-1 gap-4 w-3/4 md:grid-cols-4 md:grid-rows-2">
-            <div className="h-64 md:h-96 md:col-span-2 md:row-span-2">
-              <PickCard />
-            </div>
-
-            <div className="h-64 md:h-96 md:col-span-1 md:row-span-2">
-              <PickCard />
-            </div>
-
-            <div className="h-64 md:h-48 md:col-span-1 md:row-span-1">
-              <PickCard />
-            </div>
-
-            <div className="h-64 md:h-48 md:col-span-1 md:row-span-1">
-              <PickCard />
-            </div>
-          </div>
+    <main className="flex flex-col gap-[7.5rem]">
+      <CarouselHome />
+      <section className="flex flex-col items-center text-center gap-[3.7rem] ">
+        <div className="flex flex-col gap-[0.625rem] mb-[3.75rem]">
+          <h2 className="text-h2 font-bold">EDITOR'S PICK</h2>
+          <p className="text-base">
+            Problems trying to resolve the conflict between
+          </p>
         </div>
-        <div className=" w-full flex items-center justify-center text-center flex-col">
-          <h3>Featured Products</h3>
-          <h2>BESTSELLER PRODUCTS </h2>
-          <p>Problems trying to resolve the conflict between </p>
-          <div className="flex flex-col w-3/4 items-center justify-between lg:flex-row lg:flex-wrap lg:gap-x-4 lg:gap-y-8">
-            {Array.from({ length: itemCount }).map((_, index) => (
-              <div className="w-full lg:w-1/5">
-                <ProductCard />
-              </div>
-            ))}
-          </div>
-        </div>
-        <CarouselHome />
-        <div className="w-full flex flex-col-reverse text-center md:flex-row">
-          <div className="lg:w-1/3">
-            <img
-              src="https://picsum.photos/400/300"
-              className="object-cover w-full"
+        <article className="grid w-full gap-x-[1.875rem] gap-y-[0.9375rem] grid-cols-1 lg:w-3/4 lg:grid-cols-4 lg:grid-rows-2">
+          <div className="h-[30rem] lg:col-span-2 lg:row-span-2">
+            <PickCard
+              category="MEN"
+              imageUrl="https://picsum.photos/800/1200?random=1"
             />
           </div>
-          <div className="md:w-2/3 md:flex md:flex-col md:justify-center md:items-center">
-            <div className="md:p-12">
-              <h3>Summer 2020</h3>
-              <h2>Part of the Neural Universe </h2>
-              <p>
+          <div className="h-[30rem] lg:col-span-1 lg:row-span-2">
+            <PickCard
+              category="WOMEN"
+              imageUrl="https://picsum.photos/800/1200?random=2"
+            />
+          </div>
+          <div className="h-[30rem] lg:h-[14.5rem] lg:col-span-1 lg:row-span-1">
+            <PickCard
+              category="ACCESSORIES"
+              imageUrl="https://picsum.photos/800/600?random=3"
+            />
+          </div>
+          <div className="h-[30rem] lg:h-[14.5rem] lg:col-span-1 lg:row-span-1">
+            <PickCard
+              category="KIDS"
+              imageUrl="https://picsum.photos/800/600?random=4"
+            />
+          </div>
+        </article>
+      </section>
+      <section className="flex flex-col items-center text-center gap-[3.7rem]">
+        <div className="flex flex-col gap-[0.625rem] mb-[3.75rem]">
+          <h3 className="text-h3 font-semibold text-secondary">
+            Featured Products
+          </h3>
+          <h2 className="text-h2 font-bold">BESTSELLER PRODUCTS</h2>
+          <p className="text-base">
+            Problems trying to resolve the conflict between
+          </p>
+        </div>
+        <article className="grid grid-cols-1 gap-[1.875rem] w-full lg:w-3/4 md:grid-cols-2 lg:grid-cols-4">
+          {products.map((product) => (
+            <div key={product.id}>
+              <ProductCard
+                title={product.title}
+                department={product.department}
+                oldPrice={product.oldPrice}
+                newPrice={product.newPrice}
+                imageUrl={product.imageUrl}
+                colors={product.colors}
+              />
+            </div>
+          ))}
+        </article>
+      </section>
+      <section>
+        <CarouselHome />
+
+        <div className="flex flex-col lg:flex-row">
+          <figure className="lg:w-1/2">
+            <img
+              src="https://picsum.photos/800/600?random=5"
+              className="object-cover w-full h-full min-h-[30rem]"
+              alt="Summer collection"
+            />
+          </figure>
+          <article className="lg:w-1/2 flex flex-col justify-center lg:px-[7.5rem]">
+            <div className="flex flex-col gap-[1.875rem]">
+              <span className="text-h6 text-accent/60 tracking-[0.2px] uppercase">
+                Summer 2020
+              </span>
+              <h2 className="text-h2 font-bold tracking-[0.2px]">
+                Part of the Neural Universe
+              </h2>
+              <p className="text-h5 tracking-[0.2px]">
                 We know how large objects will act, but things on a small scale.
               </p>
-              <div className="w-full flex gap-4 flex-col justify-center items-center md:flex-row ">
-                <Button className="w-1/3 md:w-1/5">Buy Now</Button>
-                <Button variant="outline" className="w-1/3 md:w-1/5">
-                  Read More
+              <div className="flex gap-[0.625rem]">
+                <Button className="btn-text bg-primary hover:bg-primary/90 text-white border-none">
+                  BUY NOW
+                </Button>
+                <Button
+                  variant="outline"
+                  className="btn-text border-primary text-primary hover:bg-primary hover:text-white"
+                >
+                  READ MORE
                 </Button>
               </div>
             </div>
-          </div>
+          </article>
         </div>
-        <div className="w-full md:flex md:flex-col md:items-center">
-        <h3 className="text-secondary text-center">Practice Advice</h3>
-              <h2 className=" text-center">Featured Products </h2>
-              <p className=" text-center">  
-              Problems trying to resolve the conflict between the two major 
-              </p>
-              <div className="md:flex md:w-2/3 "> 
-          <div className="md:w-1/3">
-          <FeaturedPost/>
-          </div>
-          <div className="md:w-1/3">
-          <FeaturedPost/>
-          </div>
-          <div className=" md:w-1/3">
-          <FeaturedPost/>
-          </div>
-          </div>
+      </section>
+
+      <section className="flex flex-col items-center text-center px-[1.875rem]">
+        <div className="flex flex-col gap-[0.625rem] mb-[3.75rem]">
+          <h3 className="text-h3 font-semibold text-secondary">
+            Practice Advice
+          </h3>
+          <h2 className="text-h2 font-bold">Featured Posts</h2>
+          <p className="text-h5">
+            Problems trying to resolve the conflict between the two major
+          </p>
         </div>
-      </div>
-    </>
+        <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1.875rem] w-full lg:w-3/4">
+          <FeaturedPost />
+          <FeaturedPost />
+          <FeaturedPost />
+        </article>
+      </section>
+    </main>
   );
 };
 

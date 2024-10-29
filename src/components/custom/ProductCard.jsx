@@ -1,29 +1,43 @@
 import React from 'react'
 
-export default function ProductCard() {
-  
-    const colors=["grey","pink","yellow","green"]
+export default function ProductCard({ 
+  title, 
+  department, 
+  oldPrice, 
+  newPrice, 
+  imageUrl, 
+  colors 
+}) {
   return (
-    <div className="bg-text-light text-center">
-      <img src="https://picsum.photos/400/300" className="w-full" />
-      <div className="p-4">
-        <h3 className="text-lg font-bold">Graphic Design</h3>
-        <p className="text-secondary">English Department</p>
-        <div className="flex justify-center items-center">
-          <p className="text-2xl font-bold p-1 text-muted line-through">
-            $20.00
-          </p>
-          <p className="text-2xl font-bold p-1 text-secondary">
-            $16.00
-          </p>
+    <div className="flex flex-col">
+      <div className="relative w-full aspect-[3/4] overflow-hidden">
+        <img 
+          src={imageUrl}
+          alt={title}
+          className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+        />
+      </div>
+      
+      <div className="flex flex-col items-center gap-[0.625rem] py-[1.5rem]">
+        <h3 className="text-base font-bold text-accent">{title}</h3>
+        <p className="text-sm text-secondary">{department}</p>
+        
+        <div className="flex items-center gap-[0.625rem]">
+          <span className="text-base text-gray-400 line-through">
+            ${oldPrice.toFixed(2)}
+          </span>
+          <span className="text-base font-bold text-secondary">
+            ${newPrice.toFixed(2)}
+          </span>
         </div>
-        <div className="flex justify-center items-center space-x-1">
+        
+        <div className="flex gap-[0.625rem]">
           {colors.map((color, index) => (
             <div
               key={index}
-              className="w-3 h-3 rounded-full"
+              className="w-[1rem] h-[1rem] rounded-full cursor-pointer hover:scale-110 transition-transform"
               style={{ backgroundColor: color }}
-            ></div>
+            />
           ))}
         </div>
       </div>
