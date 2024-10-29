@@ -1,23 +1,19 @@
 import React from 'react'
-import { Card } from '../ui/card'
 import { Button } from '../ui/button'
 
-export default function PickCard() {
+export default function PickCard({ category, imageUrl }) {
   return (
-
-      <div
-        className="w-full h-64 bg-cover bg-center flex items-end p-4 h-full"
-        style={{
-          backgroundImage: 'url(https://picsum.photos/400/300)',
-        }}
+    <div
+      className="relative w-full h-full bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${imageUrl})`,
+      }}
+    >
+      <Button 
+        className="absolute bottom-[1.5rem] left-[1.5rem] bg-white text-accent hover:bg-primary hover:text-white transition-colors duration-300"
       >
-        <div>
-          <Button className="bg-white text-black p-2 shadow-lg hover:bg-gray-100 border-none">
-            Kategori ismi
-          </Button>
-        </div>
-      </div>
-
-
+        {category}
+      </Button>
+    </div>
   )
 }

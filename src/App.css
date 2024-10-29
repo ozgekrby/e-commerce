@@ -1,42 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --radius: 0.5rem;
   }
 
-    h1 {
-      @apply font-inter text-4xl font-bold leading-[4.938rem] tracking-[0.0125rem];
-    }
-    h2 {
-      @apply font-inter text-3xl font-bold leading-[3.625rem] tracking-[0.0125rem];
-    }
-    h3 {
-      @apply font-inter text-base font-normal leading-[1.875rem] tracking-[0.00625rem];
-    }
-    h4 {
-      @apply font-inter text-base font-bold leading-[1.875rem] tracking-[0.0125rem];
-    }
-    h5 {
-      @apply font-inter text-base font-bold leading-[1.625rem] tracking-[0.00625rem];
-    }
-    h6 {
-      @apply font-inter text-sm font-semibold leading-[1.25rem] tracking-[0.0125rem];
-    }
-    p {
-      @apply font-inter text-base font-normal leading-[1.375rem] tracking-[0.0125rem];
-    }
-    li {
-      @apply font-inter text-base font-normal leading-[1.875rem] tracking-[0.0125rem];
-    }
-    .btn-text {
-     @apply font-inter text-base font-semibold leading-[1.375rem] tracking-[0.0125rem];
-    }
-    .mobile-menu {
-     @apply font-inter text-2xl font-medium leading-[2.8125rem] tracking-[0.0125rem];
-    }
-    a {
-      @apply font-inter text-base font-medium leading-[1.375rem] tracking-[0.0125rem];
-    }
+  h1 {
+    @apply font-inter text-h1 tracking-[0.0125rem] font-bold;
   }
+  h2 {
+    @apply font-inter text-h2 tracking-[0.0125rem] font-bold;
+  }
+  h3 {
+    @apply font-inter text-h3 tracking-[0.00625rem] font-semibold;
+  }
+  h4 {
+    @apply font-inter text-h4 tracking-[0.0125rem] font-semibold;
+  }
+  h5 {
+    @apply font-inter text-h5 tracking-[0.00625rem] font-medium;
+  }
+  h6 {
+    @apply font-inter text-h6 tracking-[0.0125rem] font-medium;
+  }
+  p {
+    @apply font-inter text-base tracking-[0.0125rem];
+  }
+  
+  li {
+    @apply font-inter text-base tracking-[0.0125rem];
+  }
+  .btn-text {
+    @apply font-inter text-h6 tracking-[0.0125rem] font-semibold;
+  }
+  a {
+    @apply font-inter text-base tracking-[0.0125rem] font-medium;
+  }
+  .mobile-menu {
+    @apply font-inter text-menu tracking-[0.0125rem] font-medium;
+  }
+}
+
+@layer components {
+  .navigation-menu [data-trigger] {
+    @apply text-h6 font-inter;
+  }
+
+  .navigation-menu [data-content] {
+    @apply text-h6 font-inter;
+  }
+
+  .navigation-menu h3 {
+    @apply text-h5 font-inter font-bold;
+  }
+
+  .navigation-menu li a {
+    @apply text-h6 font-inter;
+  }
+}
