@@ -135,10 +135,14 @@ export default function Header() {
               </NavigationMenuList>
             </NavigationMenu>
             <div className="flex items-center gap-4">
+            <a href="/signup">
               <Button variant="link" className="text-secondary text-base hover:text-primary">
                 <User2Icon size={16} className="mr-2" />
+                
                 Login / Register
+                
               </Button>
+              </a>
               <SearchIcon size={16} className="text-secondary hover:text-primary cursor-pointer" />
               <ShoppingCartIcon size={16} className="text-secondary hover:text-primary cursor-pointer" />
               <HeartIcon size={16} className="text-secondary hover:text-primary cursor-pointer" />

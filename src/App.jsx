@@ -9,6 +9,9 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import ContactPage from "./pages/ContactPage";
 import TeamPage from "./pages/TeamPage";
 import AboutPage from "./pages/AboutPage";
+import SignUp from "./pages/SignUp";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -34,11 +37,25 @@ function App() {
            <Route path="/about">
             <AboutPage/>
            </Route>
+           <Route path="/signup">
+            <SignUp/>
+           </Route>
             <Route path="/">
               <HomePage />
             </Route>
           </Switch>
           <Footer />
+          <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          />
       </div>
     </>
   );

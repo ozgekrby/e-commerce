@@ -3,7 +3,7 @@ import React from 'react'
 export default function ShopCategory() {
   return (
     <div
-    className="w-full h-64 bg-cover bg-center flex items-center justify-center p-4 h-full"
+    className="w-full bg-cover bg-center flex items-center justify-center p-4 h-full"
     style={{
       backgroundImage: 'url(https://picsum.photos/400/300)',
     }}
