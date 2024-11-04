@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import Header from "./layout/Header";
@@ -13,8 +13,14 @@ import SignUp from "./pages/SignUp";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Login from "./pages/LoginPage";
+import { useDispatch } from "react-redux";
+import { verifyToken } from "./redux/actions/thunkActions";
 
 function App() {
+ const dispatch=useDispatch();
+  useEffect(()=>{
+    verifyToken(dispatch);
+  },[dispatch])
   return (
     <>
       <div>
