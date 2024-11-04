@@ -8,8 +8,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Link } from "react-router-dom";
-import ShopCategory from "@/components/custom/ShopCategory";
+import { Link, useParams, useHistory } from "react-router-dom";
 import ProductCard from "@/components/custom/ProductCard";
 import {
   Pagination,
@@ -20,10 +19,17 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useSelector } from "react-redux";
 
 export default function PageContentShop() {
-  const itemCount = 5;
+  const { gender, category } = useParams();
+  const categories = useSelector((state) => state.product.categories);
   const brandCount = 6;
+
+  const topCategories = [...categories]
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 5);
+
   const products = [
     {
       id: 1,
@@ -138,7 +144,7 @@ export default function PageContentShop() {
   return (
     <main className="flex flex-col">
       <section className="bg-slate-100 flex flex-col py-6 gap-6">
-        <div className="flex items-center justify-center ">
+        <div className="flex items-center justify-center">
           <div className="flex items-center flex-col lg:flex-row lg:w-3/4 lg:justify-between">
             <h2 className="text-h2-lg font-bold text-accent">Shop</h2>
             <nav>
@@ -155,17 +161,51 @@ export default function PageContentShop() {
                       Shop
                     </Link>
                   </NavigationMenuItem>
+                  {gender && (
+                    <>
+                      <ChevronRight className="text-accent/60" size={24} />
+                      <NavigationMenuItem>
+                        <span className="text-accent/60 capitalize">
+                          {gender}
+                        </span>
+                      </NavigationMenuItem>
+                    </>
+                  )}
+                  {category && (
+                    <>
+                      <ChevronRight className="text-accent/60" size={24} />
+                      <NavigationMenuItem>
+                        <span className="text-accent/60 capitalize">
+                          {category}
+                        </span>
+                      </NavigationMenuItem>
+                    </>
+                  )}
                 </NavigationMenuList>
               </NavigationMenu>
             </nav>
           </div>
         </div>
 
-        <article className="flex flex-col lg:flex-row w-3/4 mx-auto lg:justify-between lg:h-72 gap-4 lg:gap-0">
-          {Array.from({ length: itemCount }).map((_, index) => (
-            <div key={index} className="w-full mx-auto lg:m-0 lg:w-1/6 h-72">
-              <ShopCategory />
-            </div>
+        <article className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 w-3/4 mx-auto gap-4">
+          {topCategories.map((category) => (
+            <Link
+              key={category.id}
+              to={`/shop/${category.gender === "k" ? "kadin" : "erkek"}/${
+                category.code.split(":")[1]
+              }`}
+              className="relative block w-full h-72"
+            >
+              <img
+                src={category.img}
+                alt={category.title}
+                className="w-full h-full object-cover rounded-md"
+              />
+              <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white opacity-0 hover:opacity-100 transition-all duration-300 rounded-md">
+                <h3>{category.gender === "k" ? "Kadın" : "Erkek"}</h3>
+                <h3 className="text-xl font-bold mb-2">{category.title}</h3>
+              </div>
+            </Link>
           ))}
         </article>
       </section>
@@ -198,6 +238,7 @@ export default function PageContentShop() {
           </div>
         </div>
       </section>
+
       <section className="flex flex-col items-center gap-[3.7rem]">
         <article className="grid grid-cols-1 gap-[1.875rem] w-full lg:w-3/4 md:grid-cols-2 lg:grid-cols-4 mx-auto">
           {products.map((product) => (
@@ -219,7 +260,11 @@ export default function PageContentShop() {
                 </PaginationLink>
               </PaginationItem>
               <PaginationItem>
-                <PaginationLink href="#" isActive className="bg-secondary text-white">
+                <PaginationLink
+                  href="#"
+                  isActive
+                  className="bg-secondary text-white"
+                >
                   2
                 </PaginationLink>
               </PaginationItem>
@@ -242,9 +287,9 @@ export default function PageContentShop() {
       <section className="py-[3.7rem]">
         <article className="w-3/4 flex flex-col lg:flex-row mx-auto justify-between gap-4 lg:gap-0">
           {Array.from({ length: brandCount }).map((_, index) => (
-            <figure key={index} className="mx-auto lg:m-0 ">
-              <img 
-                src={`assets/brandlogos/${index + 1}.png`} 
+            <figure key={index} className="mx-auto lg:m-0">
+              <img
+                src={`assets/brandlogos/${index + 1}.png`}
                 alt={`Brand ${index + 1}`}
                 className="object-contain w-full h-full"
               />
