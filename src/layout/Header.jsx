@@ -78,7 +78,7 @@ export default function Header() {
               {groupedCategories.k.map(category => (
                 <Link
                   key={category.id}
-                  to={`/shop/kadin/${category.code.split(':')[1]}`}
+                  to={`/shop/kadin/${category.code.split(':')[1]}/${category.id}`}
                   className="block py-1 pl-4 text-base text-accent hover:text-primary"
                 >
                   {category.title}
@@ -90,7 +90,7 @@ export default function Header() {
               {groupedCategories.e.map(category => (
                 <Link
                   key={category.id}
-                  to={`/shop/erkek/${category.code.split(':')[1]}`}
+                  to={`/shop/erkek/${category.code.split(':')[1]}/${category.id}`}
                   className="block py-1 pl-4 text-base text-accent hover:text-primary"
                 >
                   {category.title}
@@ -208,7 +208,7 @@ export default function Header() {
                           {groupedCategories.k.map(category => (
                             <li key={category.id}>
                               <Link
-                                to={`/shop/kadin/${category.code.split(':')[1]}`}
+                                to={`/shop/kadin/${category.code.split(':')[1]}/${category.id}`}
                                 className="text-base text-accent hover:text-primary block"
                               >
                                 {category.title}
@@ -225,7 +225,7 @@ export default function Header() {
                           {groupedCategories.e.map(category => (
                             <li key={category.id}>
                               <Link
-                                to={`/shop/erkek/${category.code.split(':')[1]}`}
+                                to={`/shop/erkek/${category.code.split(':')[1]}/${category.id}`}
                                 className="text-base text-accent hover:text-primary block"
                               >
                                 {category.title}
