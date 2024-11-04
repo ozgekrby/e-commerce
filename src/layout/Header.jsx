@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   HeartIcon,
@@ -19,12 +19,32 @@ import {
   NavigationMenuContent,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchCategories } from "@/redux/actions/thunkActions";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const user = useSelector((state) => state.client.user);
+  const categories = useSelector((state) => state.product.categories);
+  const dispatch = useDispatch();
+
+  const sortCategories = (cats) => {
+    return [...cats].sort((a, b) => {
+      const codeA = a.code.split(':')[1];
+      const codeB = b.code.split(':')[1];
+      return codeA.localeCompare(codeB);
+    });
+  };
+
+  const groupedCategories = {
+    k: sortCategories(categories.filter(cat => cat.gender === 'k')),
+    e: sortCategories(categories.filter(cat => cat.gender === 'e'))
+  };
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   return (
     <header className="font-inter">
@@ -53,13 +73,29 @@ export default function Header() {
                 Home
               </Link>
             </li>
-            <li>
-              <Link
-                to="/shop"
-                className="block py-2 text-base text-accent hover:text-primary"
-              >
-                Shop
-              </Link>
+            <li className="py-2">
+              <h3 className="font-bold text-accent">Kadın</h3>
+              {groupedCategories.k.map(category => (
+                <Link
+                  key={category.id}
+                  to={`/shop/kadin/${category.code.split(':')[1]}`}
+                  className="block py-1 pl-4 text-base text-accent hover:text-primary"
+                >
+                  {category.title}
+                </Link>
+              ))}
+            </li>
+            <li className="py-2">
+              <h3 className="font-bold text-accent">Erkek</h3>
+              {groupedCategories.e.map(category => (
+                <Link
+                  key={category.id}
+                  to={`/shop/erkek/${category.code.split(':')[1]}`}
+                  className="block py-1 pl-4 text-base text-accent hover:text-primary"
+                >
+                  {category.title}
+                </Link>
+              ))}
             </li>
             <li>
               <Link
@@ -168,78 +204,34 @@ export default function Header() {
                         <h3 className="text-h6 font-bold mb-2 text-accent">
                           Kadın
                         </h3>
-                        <ul>
-                          <li>
-                            <Link
-                              to="/shop/kadin/bags"
-                              className="text-base text-accent hover:text-primary"
-                            >
-                              Bags
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              to="/shop/kadin/belts"
-                              className="text-base text-accent hover:text-primary"
-                            >
-                              Belts
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              to="/shop/kadin/cosmetics"
-                              className="text-base text-accent hover:text-primary"
-                            >
-                              Cosmetics
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              to="/shop/kadin/hats"
-                              className="text-base text-accent hover:text-primary"
-                            >
-                              Hats
-                            </Link>
-                          </li>
+                        <ul className="space-y-2">
+                          {groupedCategories.k.map(category => (
+                            <li key={category.id}>
+                              <Link
+                                to={`/shop/kadin/${category.code.split(':')[1]}`}
+                                className="text-base text-accent hover:text-primary block"
+                              >
+                                {category.title}
+                              </Link>
+                            </li>
+                          ))}
                         </ul>
                       </div>
                       <div className="w-1/2">
                         <h3 className="text-h6 font-bold mb-2 text-accent">
                           Erkek
                         </h3>
-                        <ul>
-                          <li>
-                            <Link
-                              to="/shop/erkek/bags"
-                              className="text-base text-accent hover:text-primary"
-                            >
-                              Bags
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              to="/shop/erkek/belts"
-                              className="text-base text-accent hover:text-primary"
-                            >
-                              Belts
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              to="/shop/erkek/cosmetics"
-                              className="text-base text-accent hover:text-primary"
-                            >
-                              Cosmetics
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              to="/shop/erkek/hats"
-                              className="text-base text-accent hover:text-primary"
-                            >
-                              Hats
-                            </Link>
-                          </li>
+                        <ul className="space-y-2">
+                          {groupedCategories.e.map(category => (
+                            <li key={category.id}>
+                              <Link
+                                to={`/shop/erkek/${category.code.split(':')[1]}`}
+                                className="text-base text-accent hover:text-primary block"
+                              >
+                                {category.title}
+                              </Link>
+                            </li>
+                          ))}
                         </ul>
                       </div>
                     </div>
