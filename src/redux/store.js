@@ -9,7 +9,7 @@ import logger from 'redux-logger';
 const rootReducer = combineReducers({
   client: clientReducer,
   product: productReducer,
-  cart: cartReducer
+  cart: cartReducer,
 });
 
 const myStore = createStore(

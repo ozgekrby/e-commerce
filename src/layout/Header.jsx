@@ -4,30 +4,34 @@ import {
   HeartIcon,
   InstagramIcon,
   MailIcon,
+  MenuIcon,
   PhoneIcon,
   SearchIcon,
   ShoppingCartIcon,
   User2Icon,
-  MenuIcon,
 } from "lucide-react";
 import { FaYoutube, FaFacebook, FaTwitter } from "react-icons/fa";
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuContent,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const user = useSelector((state) => state.client.user);
 
   return (
     <header className="font-inter">
       <div className="flex items-center justify-between p-4 lg:hidden">
-        <h1 className="text-h1 font-bold">Bandage</h1>
+        <Link to="/" className="text-h1 font-bold">
+          Bandage
+        </Link>
         <div className="flex items-center gap-4">
           <User2Icon size={20} className="text-secondary" />
           <SearchIcon size={20} className="text-secondary" />
@@ -41,12 +45,54 @@ export default function Header() {
       {isMenuOpen && (
         <nav className="p-4 bg-white lg:hidden">
           <ul className="space-y-2">
-            <li><a href="/" className="block py-2 text-base text-accent hover:text-primary">Home</a></li>
-            <li><a href="/shop" className="block py-2 text-base text-accent hover:text-primary">Shop</a></li>
-            <li><a href="/about" className="block py-2 text-base text-accent hover:text-primary">About</a></li>
-            <li><a href="/blog" className="block py-2 text-base text-accent hover:text-primary">Blog</a></li>
-            <li><a href="/contact" className="block py-2 text-base text-accent hover:text-primary">Contact</a></li>
-            <li><a href="/pages" className="block py-2 text-base text-accent hover:text-primary">Pages</a></li>
+            <li>
+              <Link
+                to="/"
+                className="block py-2 text-base text-accent hover:text-primary"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/shop"
+                className="block py-2 text-base text-accent hover:text-primary"
+              >
+                Shop
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                className="block py-2 text-base text-accent hover:text-primary"
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/blog"
+                className="block py-2 text-base text-accent hover:text-primary"
+              >
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                className="block py-2 text-base text-accent hover:text-primary"
+              >
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/pages"
+                className="block py-2 text-base text-accent hover:text-primary"
+              >
+                Pages
+              </Link>
+            </li>
           </ul>
         </nav>
       )}
@@ -55,23 +101,43 @@ export default function Header() {
         <div className="w-full bg-accent flex justify-center">
           <div className="flex items-center w-3/4 justify-between gap-8 py-2">
             <div className="flex items-center gap-8">
-              <Button variant="link" className="p-0 text-white text-base hover:text-primary">
+              <Button
+                variant="link"
+                className="p-0 text-white text-base hover:text-primary"
+              >
                 <PhoneIcon size={16} className="mr-2" />
                 (225) 555-0118
               </Button>
-              <Button variant="link" className="p-0 text-white text-base hover:text-primary">
+              <Button
+                variant="link"
+                className="p-0 text-white text-base hover:text-primary"
+              >
                 <MailIcon size={16} className="mr-2" />
                 michelle.rivera@example.com
               </Button>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-white text-base">Follow Us and get a chance to win 80% off</span>
+              <span className="text-white text-base">
+                Follow Us and get a chance to win 80% off
+              </span>
               <div className="flex items-center gap-2">
                 <span className="text-white text-base">Follow Us :</span>
-                <InstagramIcon size={16} className="text-white hover:text-primary cursor-pointer" />
-                <FaYoutube size={16} className="text-white hover:text-primary cursor-pointer" />
-                <FaFacebook size={16} className="text-white hover:text-primary cursor-pointer" />
-                <FaTwitter size={16} className="text-white hover:text-primary cursor-pointer" />
+                <InstagramIcon
+                  size={16}
+                  className="text-white hover:text-primary cursor-pointer"
+                />
+                <FaYoutube
+                  size={16}
+                  className="text-white hover:text-primary cursor-pointer"
+                />
+                <FaFacebook
+                  size={16}
+                  className="text-white hover:text-primary cursor-pointer"
+                />
+                <FaTwitter
+                  size={16}
+                  className="text-white hover:text-primary cursor-pointer"
+                />
               </div>
             </div>
           </div>
@@ -79,73 +145,193 @@ export default function Header() {
 
         <div className="flex items-center justify-center py-4">
           <div className="flex items-center w-3/4 justify-between">
-            <h2 className="text-h2 font-bold">Bandage</h2>
+            <Link to="/" className="text-h2 font-bold">
+              Bandage
+            </Link>
             <NavigationMenu className="navigation-menu">
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="/" className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}>
+                  <Link
+                    to="/"
+                    className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}
+                  >
                     Home
-                  </NavigationMenuLink>
+                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-base text-accent hover:text-primary">Shop</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="text-base text-accent hover:text-primary">
+                    Shop
+                  </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="flex p-4 w-[400px]">
                       <div className="w-1/2">
-                        <h3 className="text-h6 font-bold mb-2 text-accent">Kadın</h3>
+                        <h3 className="text-h6 font-bold mb-2 text-accent">
+                          Kadın
+                        </h3>
                         <ul>
-                          <li><a href="/shop" className="text-base text-accent hover:text-primary">Bags</a></li>
-                          <li><a href="/shop" className="text-base text-accent hover:text-primary">Belts</a></li>
-                          <li><a href="/shop" className="text-base text-accent hover:text-primary">Cosmetics</a></li>
-                          <li><a href="/shop" className="text-base text-accent hover:text-primary">Hats</a></li>
+                          <li>
+                            <Link
+                              to="/shop/kadin/bags"
+                              className="text-base text-accent hover:text-primary"
+                            >
+                              Bags
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/shop/kadin/belts"
+                              className="text-base text-accent hover:text-primary"
+                            >
+                              Belts
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/shop/kadin/cosmetics"
+                              className="text-base text-accent hover:text-primary"
+                            >
+                              Cosmetics
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/shop/kadin/hats"
+                              className="text-base text-accent hover:text-primary"
+                            >
+                              Hats
+                            </Link>
+                          </li>
                         </ul>
                       </div>
                       <div className="w-1/2">
-                        <h3 className="text-h6 font-bold mb-2 text-accent">Erkek</h3>
+                        <h3 className="text-h6 font-bold mb-2 text-accent">
+                          Erkek
+                        </h3>
                         <ul>
-                          <li><a href="/shop/erkek/bags" className="text-base text-accent hover:text-primary">Bags</a></li>
-                          <li><a href="/shop/erkek/belts" className="text-base text-accent hover:text-primary">Belts</a></li>
-                          <li><a href="/shop/erkek/cosmetics" className="text-base text-accent hover:text-primary">Cosmetics</a></li>
-                          <li><a href="/shop/erkek/hats" className="text-base text-accent hover:text-primary">Hats</a></li>
+                          <li>
+                            <Link
+                              to="/shop/erkek/bags"
+                              className="text-base text-accent hover:text-primary"
+                            >
+                              Bags
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/shop/erkek/belts"
+                              className="text-base text-accent hover:text-primary"
+                            >
+                              Belts
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/shop/erkek/cosmetics"
+                              className="text-base text-accent hover:text-primary"
+                            >
+                              Cosmetics
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/shop/erkek/hats"
+                              className="text-base text-accent hover:text-primary"
+                            >
+                              Hats
+                            </Link>
+                          </li>
                         </ul>
                       </div>
                     </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="/about" className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}>
+                  <Link
+                    to="/about"
+                    className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}
+                  >
                     About
-                  </NavigationMenuLink>
+                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="/blog" className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}>
+                  <Link
+                    to="/blog"
+                    className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}
+                  >
                     Blog
-                  </NavigationMenuLink>
+                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="/contact" className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}>
+                  <Link
+                    to="/contact"
+                    className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}
+                  >
                     Contact
-                  </NavigationMenuLink>
+                  </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="/pages" className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}>
+                  <Link
+                    to="/pages"
+                    className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}
+                  >
                     Pages
-                  </NavigationMenuLink>
+                  </Link>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
             <div className="flex items-center gap-4">
-            <a href="/signup">
-              <Button variant="link" className="text-secondary text-base hover:text-primary">
-                <User2Icon size={16} className="mr-2" />
-                
-                Login / Register
-                
-              </Button>
-              </a>
-              <SearchIcon size={16} className="text-secondary hover:text-primary cursor-pointer" />
-              <ShoppingCartIcon size={16} className="text-secondary hover:text-primary cursor-pointer" />
-              <HeartIcon size={16} className="text-secondary hover:text-primary cursor-pointer" />
+              {user.name ? (
+                <div className="flex items-center gap-2">
+                  {user.avatar ? (
+                    <img
+                      src={user.avatar}
+                      alt={user.name}
+                      className="w-8 h-8 rounded-full object-cover border-2 border-gray-200"
+                    />
+                  ) : (
+                    <User2Icon size={16} className="text-gray-600" />
+                  )}
+                  <div className="flex flex-col">
+                    <span className="text-secondary text-sm font-medium">
+                      {user.name}
+                    </span>
+                    <span className="text-gray-400 text-xs">{user.email}</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <User2Icon size={16} className="text-gray-600" />
+                  <div className="flex items-center">
+                    <Button
+                      variant="link"
+                      className="text-secondary text-sm hover:text-primary transition-colors duration-300"
+                    >
+                      <Link to="/login">Login</Link>
+                    </Button>
+                    <span className="text-gray-400 mx-1">/</span>
+                    <Button
+                      variant="link"
+                      className="text-secondary text-sm hover:text-primary transition-colors duration-300"
+                    >
+                      <Link to="/signup">Register</Link>
+                    </Button>
+                  </div>
+                </div>
+              )}
+              <div className="flex gap-4">
+                <SearchIcon
+                  size={16}
+                  className="text-secondary hover:text-primary cursor-pointer"
+                />
+                <ShoppingCartIcon
+                  size={16}
+                  className="text-secondary hover:text-primary cursor-pointer"
+                />
+                <HeartIcon
+                  size={16}
+                  className="text-secondary hover:text-primary cursor-pointer"
+                />
+              </div>
             </div>
           </div>
         </div>

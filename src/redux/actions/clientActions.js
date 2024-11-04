@@ -1,4 +1,3 @@
-import { fetchUser } from '@/axios/userFetch';
 import { SET_LANGUAGE, SET_ROLES, SET_THEME, SET_USER } from '../reducers/clientReducer';
 
 export const setUser = (user) => ({
@@ -21,15 +20,3 @@ export const setLanguage = (language) => ({
   payload: language
 });
 
-export const fetchRoles = () => async (dispatch, getState) => {
-  const { roles } = getState().client;
-  
-  if (!roles.length) {
-    try {
-      const response = await fetchUser.get('/roles');
-      dispatch(setRoles(response.data));
-    } catch (error) {
-      console.error('Roller yüklenirken hata:', error);
-    }
-  }
-};

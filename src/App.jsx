@@ -12,6 +12,7 @@ import AboutPage from "./pages/AboutPage";
 import SignUp from "./pages/SignUp";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Login from "./pages/LoginPage";
 
 function App() {
   return (
@@ -40,6 +41,9 @@ function App() {
            <Route path="/signup">
             <SignUp/>
            </Route>
+           <Route path="/login">
+            <Login/>
+           </Route>
             <Route path="/">
               <HomePage />
             </Route>
@@ -47,7 +51,7 @@ function App() {
           <Footer />
           <ToastContainer
           position="top-right"
-          autoClose={5000}
+          autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
