@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, LayoutGridIcon, List } from "lucide-react";
 import {
@@ -8,7 +8,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ProductCard from "@/components/custom/ProductCard";
 import {
   Pagination,
@@ -19,127 +19,33 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "@/redux/actions/thunkActions";
 
 export default function PageContentShop() {
+  const dispatch = useDispatch();
   const { gender, category } = useParams();
   const categories = useSelector((state) => state.product.categories);
+  const total = useSelector((state) => state.product.total);
+  const product = useSelector((state) => state.product.productList);
   const brandCount = 6;
 
   const topCategories = [...categories]
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 5);
 
-  const products = [
-    {
-      id: 1,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=1",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 2,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=2",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 3,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=3",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 4,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=4",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 5,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=5",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 6,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=6",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 7,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=7",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 8,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=8",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 9,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=9",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 10,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=10",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 11,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=11",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 12,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=12",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-  ];
+  useEffect(() => {}, [category, gender]);
+
+  const getCategoryId = () => {
+    const foundCategory = categories.find(
+      (cat) => cat.code.split(":")[1] === category
+    );
+
+    return foundCategory?.id;
+  };
+  const id = getCategoryId();
+  const spr=[...product]
+  const filterProductsByCat = spr.filter((item) => item.category_id === id);
 
   return (
     <main className="flex flex-col">
@@ -213,7 +119,7 @@ export default function PageContentShop() {
       <section className="flex items-center justify-center py-4 mb-6">
         <div className="flex items-center w-3/4 justify-between flex-col gap-4 lg:flex-row lg:gap-0">
           <span className="text-h5-lg text-accent/60">
-            Showing all {products.length} results
+            Showing all {total} results
           </span>
           <div className="flex gap-2 items-center">
             <p className="text-h5-lg text-accent/60">Views:</p>
@@ -241,7 +147,7 @@ export default function PageContentShop() {
 
       <section className="flex flex-col items-center gap-[3.7rem]">
         <article className="grid grid-cols-1 gap-[1.875rem] w-full lg:w-3/4 md:grid-cols-2 lg:grid-cols-4 mx-auto">
-          {products.map((product) => (
+          {filterProductsByCat.map((product) => (
             <div key={product.id}>
               <ProductCard {...product} />
             </div>

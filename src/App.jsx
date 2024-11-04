@@ -14,13 +14,18 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Login from "./pages/LoginPage";
 import { useDispatch } from "react-redux";
-import { verifyToken } from "./redux/actions/thunkActions";
+import { fetchProducts, verifyToken } from "./redux/actions/thunkActions";
 
 function App() {
  const dispatch=useDispatch();
   useEffect(()=>{
     verifyToken(dispatch);
   },[dispatch])
+
+  
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
   return (
     <>
       <div>

@@ -2,8 +2,13 @@ import { toast } from "react-toastify";
 import md5 from "md5";
 import { fetchUser } from "@/axios/userFetch";
 import { setUser } from "./clientActions";
-import { fetchData } from "@/axios/fetchData";
-import { setCategories, setFetchState } from "./productActions";
+import {
+  setCategories,
+  setFetchState,
+  setProductList,
+  setTotal,
+} from "./productActions";
+import { fetchCat } from "@/axios/fetchData";
 
 export const fetchRoles = () => (dispatch, getState) => {
   const { roles } = getState().client;
@@ -113,15 +118,32 @@ export const verifyToken = (dispatch) => {
 };
 
 export const fetchCategories = () => (dispatch) => {
-  dispatch(setFetchState('loading'));
-  
-  return fetchData.get('/categories')
-    .then(response => {
+  dispatch(setFetchState("loading"));
+
+  return fetchCat
+    .get("/categories")
+    .then((response) => {
       dispatch(setCategories(response.data));
-      dispatch(setFetchState('success'));
+      dispatch(setFetchState("success"));
     })
-    .catch(error => {
-      console.error('Error fetching categories:', error);
-      dispatch(setFetchState('error'));
+    .catch((error) => {
+      console.error("Error fetching categories:", error);
+      dispatch(setFetchState("error"));
+    });
+};
+
+export const fetchProducts = () => (dispatch) => {
+  dispatch(setFetchState("loading"));
+
+  return fetchCat
+    .get("/products")
+    .then((response) => {
+      dispatch(setProductList(response.data.products));
+      dispatch(setTotal(response.data.total));
+      dispatch(setFetchState("success"));
+    })
+    .catch((error) => {
+      console.error("Error fetching categories:", error);
+      dispatch(setFetchState("error"));
     });
 };

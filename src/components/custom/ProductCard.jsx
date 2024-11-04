@@ -1,33 +1,41 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-export default function ProductCard({ 
-  title, 
-  department, 
-  oldPrice, 
-  newPrice, 
-  imageUrl, 
-  colors 
-}) {
+export default function ProductCard({
+  id,
+  name,
+  description,
+  price,
+  stock,
+  store_id,
+  category_id,
+  rating,
+  sell_count,
+  images,
+}
+) {
+  const discount= 0.20;
+  const colors=["green","yellow","red","blue"];
   return (
     <div className="flex flex-col">
       <div className="relative w-full aspect-[3/4] overflow-hidden">
         <img 
-          src={imageUrl}
-          alt={title}
+          src={images[0].url}
+          alt={name}
           className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
         />
       </div>
       
       <div className="flex flex-col items-center gap-[0.625rem] py-[1.5rem]">
-        <h3 className="text-base font-bold text-accent">{title}</h3>
-        <p className="text-sm text-secondary">{department}</p>
+        <h3 className="text-base font-bold text-accent">{name}</h3>
+        <p className="text-sm text-secondary">{description}</p>
         
         <div className="flex items-center gap-[0.625rem]">
           <span className="text-base text-gray-400 line-through">
-            ${oldPrice.toFixed(2)}
+            ${(price*discount).toFixed(2)}
           </span>
           <span className="text-base font-bold text-secondary">
-            ${newPrice.toFixed(2)}
+            ${price}
           </span>
         </div>
         
