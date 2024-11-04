@@ -2,6 +2,8 @@ import { toast } from "react-toastify";
 import md5 from "md5";
 import { fetchUser } from "@/axios/userFetch";
 import { setUser } from "./clientActions";
+import { fetchData } from "@/axios/fetchData";
+import { setCategories, setFetchState } from "./productActions";
 
 export const fetchRoles = () => (dispatch, getState) => {
   const { roles } = getState().client;
@@ -107,5 +109,19 @@ export const verifyToken = (dispatch) => {
       console.error("Token verification failed:", error);
       clearAuthData();
       return false;
+    });
+};
+
+export const fetchCategories = () => (dispatch) => {
+  dispatch(setFetchState('loading'));
+  
+  return fetchData.get('/categories')
+    .then(response => {
+      dispatch(setCategories(response.data));
+      dispatch(setFetchState('success'));
+    })
+    .catch(error => {
+      console.error('Error fetching categories:', error);
+      dispatch(setFetchState('error'));
     });
 };
