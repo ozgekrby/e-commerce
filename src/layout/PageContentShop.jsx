@@ -34,9 +34,6 @@ export default function PageContentShop() {
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 5);
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
   useEffect(() => {}, [category, gender]);
 
   const getCategoryId = () => {
@@ -47,7 +44,8 @@ export default function PageContentShop() {
     return foundCategory?.id;
   };
   const id = getCategoryId();
-  const filterProductsByCat = product.filter((item) => item.category_id === id);
+  const spr=[...product]
+  const filterProductsByCat = spr.filter((item) => item.category_id === id);
 
   return (
     <main className="flex flex-col">
