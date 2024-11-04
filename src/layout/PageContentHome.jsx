@@ -4,83 +4,11 @@ import PickCard from "@/components/custom/PickCard";
 import ProductCard from "@/components/custom/ProductCard";
 import { Button } from "@/components/ui/button";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const PageContent = () => {
   const itemCount = 8;
-  const products = [
-    {
-      id: 1,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=1",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 2,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=2",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 3,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=2",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 4,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=2",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 5,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=2",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 6,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=2",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 7,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=2",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-    {
-      id: 8,
-      title: "Graphic Design",
-      department: "English Department",
-      oldPrice: 20.0,
-      newPrice: 16.0,
-      imageUrl: "https://picsum.photos/800/1000?random=2",
-      colors: ["#23A6F0", "#23856D", "#E77C40", "#252B42"],
-    },
-  ];
+  const products = useSelector((state) => state.product.productList);
   return (
     <main className="flex flex-col gap-[7.5rem]">
       <CarouselHome />
@@ -131,14 +59,7 @@ const PageContent = () => {
         <article className="grid grid-cols-1 gap-[1.875rem] w-full lg:w-3/4 md:grid-cols-2 lg:grid-cols-4">
           {products.map((product) => (
             <div key={product.id}>
-              <ProductCard
-                title={product.title}
-                department={product.department}
-                oldPrice={product.oldPrice}
-                newPrice={product.newPrice}
-                imageUrl={product.imageUrl}
-                colors={product.colors}
-              />
+              <ProductCard {...product} />
             </div>
           ))}
         </article>
