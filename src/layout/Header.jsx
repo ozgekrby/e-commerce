@@ -195,8 +195,13 @@ export default function Header() {
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-base text-accent hover:text-primary">
+                  <NavigationMenuTrigger>
+                  <Link
+                    to="/shop"
+                    className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}
+                  >
                     Shop
+                  </Link>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="flex p-4 w-[400px]">
