@@ -5,9 +5,7 @@ import { ChevronRight, LayoutGridIcon, List } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Link } from "react-router-dom";
 import ProductCard from "@/components/custom/ProductCard";
@@ -26,6 +24,7 @@ import { setFilter, setOffset } from "@/redux/actions/productActions";
 import { Input } from "@/components/ui/input";
 
 export default function PageContentShop() {
+  {/* TODO /shop location fix */}
   const dispatch = useDispatch();
   const history = useHistory();
   const { gender, category, categoryId } = useParams();
@@ -43,14 +42,21 @@ export default function PageContentShop() {
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 5);
 
-  useEffect(() => {
+  const handleCategoryClick = useCallback(() => {
     dispatch(setOffset(0));
     dispatch(setFilter(""));
     setSort("");
-  }, [categoryId]);
-  {
-    /*TODO: change category pagination && filter && sort */
-  }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (categoryId) {
+      dispatch(setOffset(0));
+      dispatch(setFilter(""));
+      setSort("");
+      history.replace(`/shop/${gender}/${category}/${categoryId}`);
+    }
+  }, [categoryId, gender, category, dispatch, history]);
+
   const createQueryString = useCallback(() => {
     const params = new URLSearchParams();
 
@@ -89,6 +95,7 @@ export default function PageContentShop() {
 
   const handleSortChange = (e) => {
     setSort(e.target.value);
+    dispatch(setOffset(0));
   };
 
   const handleFilterChange = (e) => {
@@ -96,12 +103,13 @@ export default function PageContentShop() {
   };
 
   const handleFilterClick = () => {
+    dispatch(setOffset(0));
     loadProducts();
   };
 
   const currentPage = Math.floor(offset / limit) + 1;
-  const startItem = (currentPage - 1) * limit + 1;
-  const endItem = Math.min(currentPage * limit, total);
+  const startItem = offset + 1;
+  const endItem = Math.min(offset + limit, total);
 
   return (
     <main className="flex flex-col">
@@ -157,6 +165,7 @@ export default function PageContentShop() {
                 category.code.split(":")[1]
               }/${category.id}`}
               className="relative block w-full h-72"
+              onClick={handleCategoryClick}
             >
               <img
                 src={category.img}
@@ -179,7 +188,6 @@ export default function PageContentShop() {
           </span>
           <div className="flex gap-2 items-center">
             <p className="text-h5-lg text-accent/60">Views:</p>
-            {/*TODO: add views */}
             <LayoutGridIcon className="text-accent cursor-pointer" />
             <List className="text-accent/60 cursor-pointer" />
           </div>
