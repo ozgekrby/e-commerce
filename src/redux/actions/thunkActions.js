@@ -132,18 +132,22 @@ export const fetchCategories = () => (dispatch) => {
     });
 };
 
-export const fetchProducts = () => (dispatch) => {
-  dispatch(setFetchState("loading"));
+export const fetchProducts =
+  (queryString = "") =>
+  (dispatch) => {
+    dispatch(setFetchState("loading"));
 
-  return fetchCat
-    .get("/products")
-    .then((response) => {
-      dispatch(setProductList(response.data.products));
-      dispatch(setTotal(response.data.total));
-      dispatch(setFetchState("success"));
-    })
-    .catch((error) => {
-      console.error("Error fetching categories:", error);
-      dispatch(setFetchState("error"));
-    });
-};
+    const endpoint = queryString ? `/products?${queryString}` : "/products";
+
+    return fetchCat
+      .get(endpoint)
+      .then((response) => {
+        dispatch(setProductList(response.data.products));
+        dispatch(setTotal(response.data.total));
+        dispatch(setFetchState("success"));
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+        dispatch(setFetchState("error"));
+      });
+  };
