@@ -247,14 +247,6 @@ export default function Header() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link
-                    to="/blog"
-                    className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}
-                  >
-                    Blog
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link
                     to="/contact"
                     className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}
                   >
@@ -263,10 +255,10 @@ export default function Header() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link
-                    to="/pages"
+                    to="/team"
                     className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}
                   >
-                    Pages
+                    Team
                   </Link>
                 </NavigationMenuItem>
               </NavigationMenuList>
