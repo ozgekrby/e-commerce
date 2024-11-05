@@ -179,6 +179,7 @@ export default function PageContentShop() {
           </span>
           <div className="flex gap-2 items-center">
             <p className="text-h5-lg text-accent/60">Views:</p>
+            {/*TODO: add views */}
             <LayoutGridIcon className="text-accent cursor-pointer" />
             <List className="text-accent/60 cursor-pointer" />
           </div>
