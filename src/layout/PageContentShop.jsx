@@ -24,6 +24,7 @@ import { setFilter, setOffset } from "@/redux/actions/productActions";
 import { Input } from "@/components/ui/input";
 
 export default function PageContentShop() {
+  {/* TODO /shop location fix */}
   const dispatch = useDispatch();
   const history = useHistory();
   const { gender, category, categoryId } = useParams();
