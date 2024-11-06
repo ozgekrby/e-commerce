@@ -6,6 +6,7 @@ import { decreaseQuantity, removeFromCart } from "@/redux/actions/cartActions";
 import { addToCart } from "@/redux/actions/thunkActions";
 
 const ShoppingCart = () => {
+  {/*TODO: Add order cart detail*/}
   const cartItems = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 
