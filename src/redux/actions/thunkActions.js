@@ -1,20 +1,20 @@
 import { toast } from "react-toastify";
 import md5 from "md5";
-import { fetchUser } from "@/axios/userFetch";
 import { setUser } from "./clientActions";
 import {
   setCategories,
   setFetchState,
+  setProductDetail,
   setProductList,
   setTotal,
 } from "./productActions";
-import { fetchCat } from "@/axios/fetchData";
+import { myApi } from "@/axios/fetch";
 
 export const fetchRoles = () => (dispatch, getState) => {
   const { roles } = getState().client;
 
   if (!roles.length) {
-    fetchUser
+    myApi
       .get("/roles")
       .then((response) => {
         dispatch(loginSuccess(response.data));
@@ -27,7 +27,7 @@ export const fetchRoles = () => (dispatch, getState) => {
 };
 
 export const loginUser = (credentials) => (dispatch) => {
-  return fetchUser
+  return myApi
     .post("/login", {
       email: credentials.email,
       password: credentials.password,
@@ -71,9 +71,9 @@ export const loginUser = (credentials) => (dispatch) => {
 
 export const setAuthToken = (token) => {
   if (token) {
-    fetchUser.defaults.headers.common["Authorization"] = token;
+    myApi.defaults.headers.common["Authorization"] = token;
   } else {
-    delete fetchUser.defaults.headers.common["Authorization"];
+    delete myApi.defaults.headers.common["Authorization"];
   }
 };
 
@@ -91,7 +91,7 @@ export const verifyToken = (dispatch) => {
 
   setAuthToken(token);
 
-  return fetchUser
+  return myApi
     .get("/verify")
     .then((response) => {
       const userData = response.data?.data || response.data;
@@ -120,7 +120,7 @@ export const verifyToken = (dispatch) => {
 export const fetchCategories = () => (dispatch) => {
   dispatch(setFetchState("loading"));
 
-  return fetchCat
+  return myApi
     .get("/categories")
     .then((response) => {
       dispatch(setCategories(response.data));
@@ -139,7 +139,7 @@ export const fetchProducts =
 
     const endpoint = queryString ? `/products?${queryString}` : "/products";
 
-    return fetchCat
+    return myApi
       .get(endpoint)
       .then((response) => {
         dispatch(setProductList(response.data.products));
@@ -151,3 +151,18 @@ export const fetchProducts =
         dispatch(setFetchState("error"));
       });
   };
+
+export const fetchProductDetail = (productId) => (dispatch) => {
+  dispatch(setFetchState("loading"));
+
+  return myApi
+    .get(`/products/${productId}`)
+    .then((response) => {
+      dispatch(setProductDetail(response.data));
+      dispatch(setFetchState("success"));
+    })
+    .catch((error) => {
+      console.error("Error fetching product:", error);
+      dispatch(setFetchState("error"));
+    });
+};

@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import "./App.css";
-import { Route, Switch, useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  Route,
+  Switch,
+  useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import HomePage from "./pages/HomePage";
@@ -11,7 +15,7 @@ import TeamPage from "./pages/TeamPage";
 import AboutPage from "./pages/AboutPage";
 import SignUp from "./pages/SignUp";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/LoginPage";
 import { useDispatch } from "react-redux";
 import { fetchProducts, verifyToken } from "./redux/actions/thunkActions";
@@ -20,14 +24,14 @@ import { setFilter, setOffset } from "./redux/actions/productActions";
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
-  
+
   useEffect(() => {
     verifyToken(dispatch);
   }, [dispatch]);
 
   useEffect(() => {
-    if (!location.pathname.includes('/shop/')) {
-      dispatch(setFilter(''));
+    if (!location.pathname.includes("/shop/")) {
+      dispatch(setFilter(""));
       dispatch(setOffset(0));
 
       const params = new URLSearchParams(location.search);
@@ -40,34 +44,35 @@ function App() {
     <div>
       <Header />
       <Switch>
-        <Route exact path="/home">
+        <Route path="/home">
           <HomePage />
         </Route>
-        <Route exact path="/shop/:gender/:category/:categoryId">
-          <ShopPage />
-        </Route>
-        <Route exact path="/shop">
-          <ShopPage />
-        </Route>
-        <Route exact path="/products">
+        <Route path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId">
           <ProductDetailPage />
         </Route>
-        <Route exact path="/contact">
+        <Route path="/shop/:gender/:category/:categoryId">
+          <ShopPage />
+        </Route>
+
+        <Route path="/shop">
+          <ShopPage />
+        </Route>
+        <Route path="/contact">
           <ContactPage />
         </Route>
-        <Route exact path="/team">
+        <Route path="/team">
           <TeamPage />
         </Route>
-        <Route exact path="/about">
+        <Route path="/about">
           <AboutPage />
         </Route>
-        <Route exact path="/signup">
+        <Route path="/signup">
           <SignUp />
         </Route>
-        <Route exact path="/login">
+        <Route path="/login">
           <Login />
         </Route>
-        <Route exact path="/">
+        <Route path="/">
           <HomePage />
         </Route>
       </Switch>
