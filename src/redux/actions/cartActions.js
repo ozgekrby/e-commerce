@@ -1,4 +1,4 @@
-import { SET_ADDRESS, SET_CART, SET_PAYMENT } from "../reducers/cartReducer";
+import { DECREASE_QUANTITY, REMOVE_FROM_CART, SET_ADDRESS, SET_CART, SET_PAYMENT } from "../reducers/cartReducer";
 
 export const setCart = (cart) => ({
     type: SET_CART,
@@ -14,3 +14,16 @@ export const setCart = (cart) => ({
     type: SET_ADDRESS,
     payload: address
   });
+
+  export const removeFromCart = (productId) => {
+    return {
+        type: REMOVE_FROM_CART,
+        payload: productId,
+    };
+};
+export const decreaseQuantity = (productId) => {
+  return {
+      type: DECREASE_QUANTITY,
+      payload: productId,
+  };
+};

@@ -20,6 +20,7 @@ import Login from "./pages/LoginPage";
 import { useDispatch } from "react-redux";
 import { fetchProducts, verifyToken } from "./redux/actions/thunkActions";
 import { setFilter, setOffset } from "./redux/actions/productActions";
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,9 @@ function App() {
 
         <Route path="/shop">
           <ShopPage />
+        </Route>
+        <Route path="/shoppingcart">
+          <ShoppingCartPage />
         </Route>
         <Route path="/contact">
           <ContactPage />

@@ -19,14 +19,14 @@ const ShoppingCartDropdown = ({ isOpen, onClose }) => {
                <div>
                 <p>{item.product.name}</p>
                 <p>Adet: {item.count}</p>
-                <h3 className='text-primary'>{`${item.product.price.toFixed(2)} TL`}</h3>
+                <h3 className='text-primary'>{`${(item.product.price*item.count).toFixed(2)} TL`}</h3>
                 </div>
               </div>
             </div>
           ))
         )}
         <div className='flex justify-between'>
-        <Link to="/cart" className="block text-center mt-4 text-sm bg-primary text-white rounded w-2/5">
+        <Link to="/shoppingcart" className="block text-center mt-4 text-sm bg-primary text-white rounded w-2/5">
           Sepete Git
         </Link>
         <Link to="/order" className="block text-center mt-4 text-sm bg-primary text-white  rounded w-1/2">
