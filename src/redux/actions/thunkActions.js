@@ -9,6 +9,7 @@ import {
   setTotal,
 } from "./productActions";
 import { myApi } from "@/axios/fetch";
+import { setCart } from "./cartActions";
 
 export const fetchRoles = () => (dispatch, getState) => {
   const { roles } = getState().client;
@@ -165,4 +166,17 @@ export const fetchProductDetail = (productId) => (dispatch) => {
       console.error("Error fetching product:", error);
       dispatch(setFetchState("error"));
     });
+};
+export const addToCart = (product) => (dispatch, getState) => {
+  const { cart } = getState().cart; 
+
+  const existingProductIndex = cart.findIndex(item => item.product.id === product.id);
+
+  if (existingProductIndex >= 0) {
+    const updatedCart = [...cart];
+    updatedCart[existingProductIndex].count += 1;
+    dispatch(setCart(updatedCart));
+  } else {
+    dispatch(setCart([...cart, { count: 1, checked: true, product }]));
+  }
 };
