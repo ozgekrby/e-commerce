@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Loader2 } from "lucide-react";
 import { toast } from "react-toastify";
-import { fetchUser } from "@/axios/userFetch";
+import { myApi } from "@/axios/fetch";
 
 export default function SignUp() {
   const [roles, setRoles] = useState([]);
@@ -32,7 +32,7 @@ export default function SignUp() {
   });
 
   useEffect(() => {
-    fetchUser
+    myApi
       .get("/roles")
       .then((response) => {
         setRoles(response.data);
@@ -57,7 +57,6 @@ export default function SignUp() {
     } catch (error) {
       toast.error(
         error.response?.data?.message || "Kayıt olurken bir hata oluştu"
-        
       );
       setIsLoading(false);
     }
