@@ -24,6 +24,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductCard from "@/components/custom/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addToCart,
   fetchProductDetail,
   fetchProducts,
 } from "@/redux/actions/thunkActions";
@@ -70,6 +71,10 @@ export default function PageContentProduct() {
     }
   }, [categoryId, dispatch]);
 
+  const handleAddToCart = () => {
+    dispatch(addToCart(productDetail));
+  };
+
   return (
     <main className="flex flex-col">
       <section className="bg-slate-100 py-6">
@@ -93,7 +98,7 @@ export default function PageContentProduct() {
       </section>
 
       <section className="w-3/4 mx-auto flex flex-col lg:flex-row lg:gap-12 py-8">
-        <article className="lg:w-2/3"> 
+        <article className="lg:w-2/3">
           <Carousel className="w-full relative cursor-pointer">
             <CarouselContent>
               <CarouselItem>
@@ -196,6 +201,7 @@ export default function PageContentProduct() {
             <Button
               className="flex-1 bg-primary hover:bg-primary/90 text-white"
               disabled={productDetail.stock === 0}
+              onClick={handleAddToCart} 
             >
               {productDetail.stock > 0 ? "Add to Cart" : "Out of Stock"}
             </Button>

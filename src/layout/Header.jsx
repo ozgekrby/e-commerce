@@ -22,9 +22,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchCategories } from "@/redux/actions/thunkActions";
+import ShoppingCartDropdown from "@/components/custom/ShoppingCartDropdown";
+
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false); 
   const user = useSelector((state) => state.client.user);
   const categories = useSelector((state) => state.product.categories);
   const dispatch = useDispatch();
@@ -55,7 +58,11 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <User2Icon size={20} className="text-secondary" />
           <SearchIcon size={20} className="text-secondary" />
-          <ShoppingCartIcon size={20} className="text-secondary" />
+          <ShoppingCartIcon
+            size={20}
+            className="text-secondary cursor-pointer"
+            onClick={() => setIsCartOpen(!isCartOpen)} 
+          />
           <Button variant="ghost" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <MenuIcon size={20} className="text-secondary" />
           </Button>
@@ -196,12 +203,12 @@ export default function Header() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>
-                  <Link
-                    to="/shop"
-                    className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}
-                  >
-                    Shop
-                  </Link>
+                    <Link
+                      to="/shop"
+                      className={`${navigationMenuTriggerStyle()} text-base text-accent hover:text-primary`}
+                    >
+                      Shop
+                    </Link>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="flex p-4 w-[400px]">
@@ -315,6 +322,7 @@ export default function Header() {
                 <ShoppingCartIcon
                   size={16}
                   className="text-secondary hover:text-primary cursor-pointer"
+                  onClick={() => setIsCartOpen(!isCartOpen)} 
                 />
                 <HeartIcon
                   size={16}
@@ -325,6 +333,9 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+
+      <ShoppingCartDropdown isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </header>
   );
 }
