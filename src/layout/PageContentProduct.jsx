@@ -93,8 +93,8 @@ export default function PageContentProduct() {
       </section>
 
       <section className="w-3/4 mx-auto flex flex-col lg:flex-row lg:gap-12 py-8">
-        <article className="lg:w-2/3">
-          <Carousel className="w-full relative">
+        <article className="lg:w-2/3"> 
+          <Carousel className="w-full relative cursor-pointer">
             <CarouselContent>
               <CarouselItem>
                 <Card>
@@ -102,7 +102,7 @@ export default function PageContentProduct() {
                     <img
                       src={productDetail.images?.[currentSlide]?.url}
                       alt={`${productDetail.name} image ${currentSlide + 1}`}
-                      className="w-full object-cover h-full"
+                      className="w-full object-cover h-full transition-transform duration-300 transform hover:scale-110"
                     />
                   </CardContent>
                 </Card>
@@ -137,7 +137,7 @@ export default function PageContentProduct() {
                 <img
                   src={image.url}
                   alt={`Thumbnail ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 transform hover:scale-110"
                 />
               </button>
             ))}
@@ -249,10 +249,10 @@ export default function PageContentProduct() {
 
           <TabsContent value="description" className="bg-white rounded-lg p-8">
             <div className="flex flex-col lg:flex-row lg:gap-8">
-              <figure className="lg:w-1/3 mb-4 lg:mb-0">
+              <figure className="lg:w-1/3 mb-4 lg:mb-0 cursor-pointer ">
                 <img
                   src={productDetail.images?.[0]?.url}
-                  className="w-full object-cover h-full rounded-lg"
+                  className="w-full object-cover h-full rounded-lg transition-transform duration-300 transform hover:scale-110"
                   alt={productDetail.name}
                 />
               </figure>
