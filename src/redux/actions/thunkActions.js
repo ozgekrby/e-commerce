@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import md5 from "md5";
-import { setUser } from "./clientActions";
+import { setAddressList, setUser } from "./clientActions";
 import {
   setCategories,
   setFetchState,
@@ -9,7 +9,7 @@ import {
   setTotal,
 } from "./productActions";
 import { myApi } from "@/axios/fetch";
-import { setCart } from "./cartActions";
+import { setAddress, setCart } from "./cartActions";
 
 export const fetchRoles = () => (dispatch, getState) => {
   const { roles } = getState().client;
@@ -179,4 +179,95 @@ export const addToCart = (product) => (dispatch, getState) => {
   } else {
     dispatch(setCart([...cart, { count: 1, checked: true, product }]));
   }
+};
+
+export const fetchAddress = () => (dispatch) => {
+  dispatch(setFetchState("loading"));
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+      console.error("No token found");
+      dispatch(setFetchState("error"));
+      return;
+  }
+
+  return myApi
+      .get("/user/address", {
+          headers: {
+              Authorization: token,
+          },
+      })
+      .then((response) => {
+          dispatch(setAddressList(response.data));
+          dispatch(setFetchState("success"));
+      })
+      .catch((error) => {
+          console.error("Error fetching address:", error);
+          dispatch(setFetchState("error"));
+      });
+};
+export const addAddressth = (data) => (dispatch) => {
+  dispatch(setFetchState("loading"));
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+      console.error("No token found");
+      dispatch(setFetchState("error"));
+      return;
+  }
+
+  return myApi
+      .post("/user/address", data)
+      .then((response) => {
+          dispatch(fetchAddress());
+          dispatch(setFetchState("success"));
+      })
+      .catch((error) => {
+          console.error("Error fetching address:", error);
+          dispatch(setFetchState("error"));
+      });
+};
+
+export const editAddressth = (data) => (dispatch) => {
+  dispatch(setFetchState("loading"));
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+      console.error("No token found");
+      dispatch(setFetchState("error"));
+      return;
+  }
+
+  return myApi
+      .put("/user/address", data)
+      .then((response) => {
+          dispatch(fetchAddress());
+          dispatch(setFetchState("success"));
+      })
+      .catch((error) => {
+          console.error("Error fetching address:", error);
+          dispatch(setFetchState("error"));
+      });
+};
+
+export const deleteAddress = (id) => (dispatch) => {
+  dispatch(setFetchState("loading"));
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+      console.error("No token found");
+      dispatch(setFetchState("error"));
+      return;
+  }
+
+  return myApi
+      .delete(`/user/address/${id}`)
+      .then((response) => {
+          dispatch(fetchAddress());
+          dispatch(setFetchState("success"));
+      })
+      .catch((error) => {
+          console.error("Error fetching address:", error);
+          dispatch(setFetchState("error"));
+      });
 };
