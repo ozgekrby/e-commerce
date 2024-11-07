@@ -1,4 +1,4 @@
-import { SET_LANGUAGE, SET_ROLES, SET_THEME, SET_USER } from '../reducers/clientReducer';
+import { SET_ADDRESS_LIST, SET_LANGUAGE, SET_ROLES, SET_THEME, SET_USER } from '../reducers/clientReducer';
 
 export const setUser = (user) => ({
   type: SET_USER,
@@ -19,4 +19,9 @@ export const setLanguage = (language) => ({
   type: SET_LANGUAGE,
   payload: language
 });
+export const setAddressList = (address) => ({
+  type: SET_ADDRESS_LIST,
+  payload: address
+});
+
 

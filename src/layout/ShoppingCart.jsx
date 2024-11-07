@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { decreaseQuantity, removeFromCart } from "@/redux/actions/cartActions";
 import { addToCart } from "@/redux/actions/thunkActions";
+import {Link} from "react-router-dom";
 
 const ShoppingCart = () => {
   {
@@ -123,9 +124,9 @@ const ShoppingCart = () => {
               </Button>
             </div>
             <div className="mt-4">
-              <Button className="bg-primary text-white w-full">
+              <Link to="/order" className="bg-primary text-white w-full">
                 Sepeti Onayla
-              </Button>
+              </Link>
             </div>
           </div>
         </div>

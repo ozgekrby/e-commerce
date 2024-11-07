@@ -21,10 +21,13 @@ import { useDispatch } from "react-redux";
 import { fetchProducts, verifyToken } from "./redux/actions/thunkActions";
 import { setFilter, setOffset } from "./redux/actions/productActions";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
+import OrderPage from "./pages/OrderPage";
+import ProtectedRoute from "./components/custom/ProtectRoute";
 
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const isAuthenticated = !!localStorage.getItem('token');
 
   useEffect(() => {
     verifyToken(dispatch);
@@ -61,6 +64,9 @@ function App() {
         <Route path="/shoppingcart">
           <ShoppingCartPage />
         </Route>
+        <ProtectedRoute path="/order" isAuthenticated={isAuthenticated}>
+        <OrderPage/>
+        </ProtectedRoute>
         <Route path="/contact">
           <ContactPage />
         </Route>
